@@ -1,0 +1,44 @@
+{
+  "name": "haven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartikphulwari01-afk/HAVEN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kartikphulwari01-afk/HAVEN/issues"
+  },
+  "homepage": "https://github.com/kartikphulwari01-afk/HAVEN#readme",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.58.0",
+    "next": "^14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.18",
+    "postcss": "^8.5.30",
+    "puppeteer-core": "^25.14.0",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^6.0.3"
+  }
+}

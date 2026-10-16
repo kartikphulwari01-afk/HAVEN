@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --haven-bg: #F7F5FF;
+  --haven-canvas: #EDE8FD;
+  --haven-primary: #7655FF;
+  --haven-lime: #DFFF68;
+  --haven-pink: #FF729E;
+  --haven-cyan: #65E7F2;
+  --haven-text: #21183B;
+  --haven-secondary: #766D8F;
+  --haven-surface: #FFFFFF;
+  --haven-border: #E6DFFD;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #EDE8FD;
+  color: #21183B;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Custom Scrollbar for PLAYMODE */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8CEF8;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BAA6F3;
+}
+
+/* PLAYMODE Hand-drawn Doodle Styling */
+.playmode-doodle-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
