@@ -14,18 +14,18 @@ export function WatchTogetherCard({ onOpenRoomNotice }: WatchTogetherCardProps) 
       onClick={onOpenRoomNotice}
       className="flex-1 rounded-[22px] lg:rounded-[26px] bg-[#16112C] border border-[#7655FF]/40 shadow-[0_4px_30px_rgba(118,85,255,0.16)] hover:shadow-[0_8px_35px_rgba(118,85,255,0.28)] hover:border-[#7655FF]/70 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group select-none relative"
     >
-      {/* Top Visual Poster Carousel Area */}
+      {/* Top Visual Artwork Area */}
       <div className="relative w-full flex-1 min-h-[170px] sm:min-h-[190px] overflow-hidden rounded-t-[22px] lg:rounded-t-[26px] bg-[#16112C]">
         <Image
-          src="/images/hangout/watch_together_posters.jpg"
-          alt="Watch Together movie and anime posters"
+          src="/assets/hangout/watch-together.webp"
+          alt="Watch Together anime cinema room"
           fill
           priority
-          className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+          className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
         />
 
         {/* Ambient Bottom Fade to Card Interior */}
-        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#16112C] via-[#16112C]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#16112C] via-[#16112C]/65 to-transparent pointer-events-none" />
       </div>
 
       {/* Bottom Information & Action Area */}

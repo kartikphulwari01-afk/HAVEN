@@ -14,14 +14,14 @@ export function ListenTogetherCard({ onComingSoonClick }: ListenTogetherCardProp
       onClick={onComingSoonClick}
       className="flex-1 rounded-[22px] lg:rounded-[26px] bg-[#16112C] border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:border-white/20 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer select-none relative group"
     >
-      {/* Top Visual Music Studio Area */}
+      {/* Top Visual Music Studio Artwork Area */}
       <div className="relative w-full flex-1 min-h-[170px] sm:min-h-[190px] overflow-hidden rounded-t-[22px] lg:rounded-t-[26px] bg-[#16112C]">
         <Image
-          src="/images/hangout/listen_together_studio.jpg"
-          alt="Listen Together studio and audio visualizer"
+          src="/assets/hangout/listen-together.webp"
+          alt="Listen Together music loft studio and city view"
           fill
           priority
-          className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+          className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
         />
 
         {/* Coming Soon Pill Badge */}
@@ -30,7 +30,7 @@ export function ListenTogetherCard({ onComingSoonClick }: ListenTogetherCardProp
         </div>
 
         {/* Ambient Bottom Fade to Card Interior */}
-        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#16112C] via-[#16112C]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#16112C] via-[#16112C]/65 to-transparent pointer-events-none" />
       </div>
 
       {/* Bottom Information & Action Area */}
