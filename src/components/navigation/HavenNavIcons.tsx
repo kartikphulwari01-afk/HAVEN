@@ -539,3 +539,61 @@ export function HavenSettingsIcon({
     </svg>
   );
 }
+
+/**
+ * 8. Hangout Icon
+ * Dual-user silhouettes with layered depth, matching the approved PLAYMODE aesthetic.
+ */
+export function HavenHangoutIcon({
+  size = 24,
+  isActive = false,
+  className = "",
+}: IconBaseProps) {
+  const primaryFill = isActive ? "#FFFFFF" : "#21183B";
+  const secondaryFill = isActive ? "rgba(255, 255, 255, 0.45)" : "rgba(118, 85, 255, 0.35)";
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`inline-block flex-shrink-0 ${className}`}
+      aria-hidden="true"
+    >
+      {/* Secondary User (Right / Back) */}
+      <circle
+        cx="18.5"
+        cy="9.5"
+        r="3.5"
+        fill={secondaryFill}
+        stroke={isActive ? "rgba(255,255,255,0.4)" : "#21183B"}
+        strokeWidth="1.2"
+      />
+      <path
+        d="M 14.5 21 C 14.5 17.8 17 15.8 20.2 15.8 C 23 15.8 25.2 17.4 25.2 20.5 C 25.2 21.2 24.6 21.8 23.8 21.8 L 15.2 21.8 C 14.8 21.8 14.5 21.5 14.5 21 Z"
+        fill={secondaryFill}
+        stroke={isActive ? "rgba(255,255,255,0.3)" : "#21183B"}
+        strokeWidth="1.2"
+      />
+
+      {/* Primary User (Left / Front) */}
+      <circle
+        cx="10.5"
+        cy="10.5"
+        r="4.2"
+        fill={primaryFill}
+        stroke={isActive ? "rgba(255,255,255,0.6)" : "#21183B"}
+        strokeWidth="1.3"
+      />
+      <path
+        d="M 4 23.5 C 4 19.2 7 17 11 17 C 15 17 18 19.2 18 23.5 C 18 24.3 17.3 25 16.5 25 L 5.5 25 C 4.7 25 4 24.3 4 23.5 Z"
+        fill={primaryFill}
+        stroke={isActive ? "rgba(255,255,255,0.6)" : "#21183B"}
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

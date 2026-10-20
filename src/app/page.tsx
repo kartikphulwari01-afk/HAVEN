@@ -14,6 +14,7 @@ import { RoamView } from "@/components/roam/RoamView";
 import { CommunitiesView } from "@/components/communities/CommunitiesView";
 import { BingeView } from "@/components/binge/BingeView";
 import { CreateView } from "@/components/create/CreateView";
+import { HangoutView } from "@/components/hangout/HangoutView";
 import {
   MOCK_CONVERSATIONS,
   MOCK_STORIES,
@@ -253,6 +254,11 @@ export default function HavenDesktopChat() {
         {/* Section 5: Create */}
         {activeNavSection === "create" && (
           <CreateView onPostPublished={() => setActiveNavSection("roam")} />
+        )}
+
+        {/* Section 6: Hangout */}
+        {activeNavSection === "hangout" && (
+          <HangoutView />
         )}
       </div>
 

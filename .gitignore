@@ -8,6 +8,7 @@
 
 # testing
 /coverage
+*_verify.png
 
 # next.js
 /.next/

@@ -8,12 +8,13 @@ import {
   HavenCommunitiesIcon,
   HavenBingeIcon,
   HavenCreateIcon,
+  HavenHangoutIcon,
   HavenSettingsIcon,
   HavenBellIcon,
   HavenCameraIcon,
 } from "./HavenNavIcons";
 
-export type HavenNavSection = "chats" | "roam" | "communities" | "binge" | "create";
+export type HavenNavSection = "chats" | "roam" | "communities" | "binge" | "create" | "hangout";
 
 interface HavenGlobalSidebarProps {
   activeSection: HavenNavSection;
@@ -62,6 +63,11 @@ export function HavenGlobalSidebar({
       label: "Create",
       icon: HavenCreateIcon,
     },
+    {
+      id: "hangout",
+      label: "Hangout",
+      icon: HavenHangoutIcon,
+    },
   ];
 
   return (
@@ -74,7 +80,7 @@ export function HavenGlobalSidebar({
         {/* Brand Emblem & Wordmark */}
         <div
           onClick={() => onNavigate("chats")}
-          className="flex items-center gap-2.5 mb-8 px-1 cursor-pointer group focus:outline-none"
+          className="flex items-center gap-2.5 mb-4 px-1 cursor-pointer group focus:outline-none"
           title="HAVEN Home"
         >
           <div className="w-8 h-8 rounded-xl bg-haven-primary-subtle flex items-center justify-center text-haven-text group-hover:rotate-12 transition-transform duration-300 shadow-xs border border-haven-border/50">
@@ -91,7 +97,7 @@ export function HavenGlobalSidebar({
         </div>
 
         {/* Primary Route-Aware Navigation Items */}
-        <nav className="flex flex-col gap-1.5" aria-label="Main Destinations">
+        <nav className="flex flex-col gap-1" aria-label="Main Destinations">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -100,7 +106,7 @@ export function HavenGlobalSidebar({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`w-full flex items-center gap-3 px-3.5 py-2 rounded-2xl motion-safe:transition-all duration-150 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-haven-primary ${
+                className={`w-full flex items-center gap-3 px-3.5 py-1.5 rounded-2xl motion-safe:transition-all duration-150 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-haven-primary ${
                   isActive
                     ? "bg-gradient-to-r from-[#7B59FF] to-[#6741FF] text-white shadow-[0_6px_20px_-3px_rgba(118,85,255,0.4),inset_0_1px_1px_rgba(255,255,255,0.35)]"
                     : "text-haven-secondary hover:text-haven-text hover:bg-haven-primary-subtle motion-safe:hover:translate-x-1"

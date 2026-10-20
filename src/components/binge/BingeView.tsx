@@ -138,8 +138,124 @@ export function BingeView() {
     }
   };
 
+  // Native Laptop Trackpad (two-finger swipe) Gesture Handling
+  const containerRef = useRef<HTMLDivElement>(null);
+  const accumX = useRef(0);
+  const accumY = useRef(0);
+  const isGestureActive = useRef(false);
+  const lastNavTime = useRef(0);
+  const idleTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNextRef = useRef(handleNext);
+  handleNextRef.current = handleNext;
+  const handlePrevRef = useRef(handlePrev);
+  handlePrevRef.current = handlePrev;
+
+  const isModalOpenRef = useRef(false);
+  isModalOpenRef.current = isCommentsOpen || isShareOpen;
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const HORIZONTAL_THRESHOLD = 45;
+    const VERTICAL_THRESHOLD = 60;
+    const MIN_COOLDOWN_MS = 400;
+    const IDLE_RESET_MS = 180;
+
+    const onWheel = (e: WheelEvent) => {
+      // 1. If comments drawer or share modal is open, do not intercept or prevent default
+      if (isModalOpenRef.current) return;
+
+      // 2. Ignore if interacting with interactive controls (inputs, sliders, dialogs, etc.)
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        target.closest(
+          'input, textarea, select, [contenteditable="true"], [role="dialog"], [role="slider"]'
+        )
+      ) {
+        return;
+      }
+
+      // 3. Prevent unintended page scroll while navigating BINGE
+      e.preventDefault();
+
+      // Reset idle timer on every wheel event
+      if (idleTimer.current) {
+        clearTimeout(idleTimer.current);
+      }
+
+      // When gesture ends (no wheel events for IDLE_RESET_MS), reset lock and accumulation
+      idleTimer.current = setTimeout(() => {
+        isGestureActive.current = false;
+        accumX.current = 0;
+        accumY.current = 0;
+      }, IDLE_RESET_MS);
+
+      const now = Date.now();
+      const inCooldown = now - lastNavTime.current < MIN_COOLDOWN_MS;
+
+      // If an existing gesture/momentum is active or still in cooldown, consume event without triggering
+      if (isGestureActive.current || inCooldown) {
+        return;
+      }
+
+      // Accumulate deltas for fresh gesture
+      accumX.current += e.deltaX;
+      accumY.current += e.deltaY;
+
+      const absX = Math.abs(accumX.current);
+      const absY = Math.abs(accumY.current);
+
+      // Horizontal gesture priority
+      if (absX >= absY) {
+        if (accumX.current >= HORIZONTAL_THRESHOLD) {
+          // Two-finger swipe left -> Next video
+          handleNextRef.current();
+          isGestureActive.current = true;
+          lastNavTime.current = now;
+          accumX.current = 0;
+          accumY.current = 0;
+        } else if (accumX.current <= -HORIZONTAL_THRESHOLD) {
+          // Two-finger swipe right -> Previous video
+          handlePrevRef.current();
+          isGestureActive.current = true;
+          lastNavTime.current = now;
+          accumX.current = 0;
+          accumY.current = 0;
+        }
+      } else {
+        // Vertical alternative gesture (swipe up for next, swipe down for prev)
+        if (accumY.current >= VERTICAL_THRESHOLD) {
+          handleNextRef.current();
+          isGestureActive.current = true;
+          lastNavTime.current = now;
+          accumX.current = 0;
+          accumY.current = 0;
+        } else if (accumY.current <= -VERTICAL_THRESHOLD) {
+          handlePrevRef.current();
+          isGestureActive.current = true;
+          lastNavTime.current = now;
+          accumX.current = 0;
+          accumY.current = 0;
+        }
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      if (idleTimer.current) {
+        clearTimeout(idleTimer.current);
+      }
+    };
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className="flex-1 h-full bg-[#120E24] rounded-[24px] lg:rounded-[32px] flex flex-col justify-between overflow-hidden relative select-none shadow-2xl border border-white/5"
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
